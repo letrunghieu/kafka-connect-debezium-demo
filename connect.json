@@ -1,0 +1,16 @@
+{
+    "name": "MySqlConnectorConnector_0",
+    "config": {
+      "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+      "topic.prefix": "connector01",
+      "database.hostname": "mysql",
+      "database.port": "3306",
+      "database.user": "connect",
+      "database.password": "password",
+      "database.server.id": "191",
+      "include.schema.changes": "true",
+      "database.include.list": "acme",
+      "schema.history.internal.kafka.bootstrap.servers": "broker:29092",
+      "schema.history.internal.kafka.topic": "schema-history.acme"
+    }
+  }
