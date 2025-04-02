@@ -42,7 +42,9 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
 
   connect:
-    image: cnfldemos/cp-server-connect-datagen:0.6.4-7.6.0
+    build:
+      context: ./docker/connect
+      dockerfile: Dockerfile
     hostname: connect
     container_name: connect
     depends_on:
@@ -94,7 +96,7 @@ services:
   mysql:
     container_name: mysql
     hostname: mysql
-    image: mysql
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: secret
