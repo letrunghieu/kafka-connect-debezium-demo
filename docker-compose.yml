@@ -41,95 +41,95 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
 
-  connect-string:
-    build:
-      context: ./docker/connect
-      dockerfile: Dockerfile
-    hostname: connect-string
-    container_name: connect-string
-    depends_on:
-      - broker
-      - schema-registry
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONNECT_REST_ADVERTISED_HOST_NAME: connect-string
-      CONNECT_GROUP_ID: compose-connect-group-string
-      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-string-configs
-      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
-      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-string-offsets
-      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-string-status
-      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
-      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.storage.StringConverter
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      # CLASSPATH required due to CC-2422
-      #CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
-      #CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-      #CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+  # connect-string:
+  #   build:
+  #     context: ./docker/connect
+  #     dockerfile: Dockerfile
+  #   hostname: connect-string
+  #   container_name: connect-string
+  #   depends_on:
+  #     - broker
+  #     - schema-registry
+  #   environment:
+  #     CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
+  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect-string
+  #     CONNECT_GROUP_ID: compose-connect-group-string
+  #     CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-string-configs
+  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+  #     CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-string-offsets
+  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_STATUS_STORAGE_TOPIC: docker-connect-string-status
+  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+  #     CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     # CLASSPATH required due to CC-2422
+  #     #CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
+  #     #CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+  #     #CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+  #     CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
 
-  connect-avro:
-    build:
-      context: ./docker/connect
-      dockerfile: Dockerfile
-    hostname: connect-avro
-    container_name: connect-avro
-    depends_on:
-      - broker
-      - schema-registry
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONNECT_REST_ADVERTISED_HOST_NAME: connect-avro
-      CONNECT_GROUP_ID: compose-connect-group-avro
-      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-avro-configs
-      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
-      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-avro-offsets
-      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-avro-status
-      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      # CLASSPATH required due to CC-2422
-      CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
-      CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-      CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+  # connect-avro:
+  #   build:
+  #     context: ./docker/connect
+  #     dockerfile: Dockerfile
+  #   hostname: connect-avro
+  #   container_name: connect-avro
+  #   depends_on:
+  #     - broker
+  #     - schema-registry
+  #   environment:
+  #     CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
+  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect-avro
+  #     CONNECT_GROUP_ID: compose-connect-group-avro
+  #     CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-avro-configs
+  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+  #     CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-avro-offsets
+  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_STATUS_STORAGE_TOPIC: docker-connect-avro-status
+  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+  #     CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     # CLASSPATH required due to CC-2422
+  #     CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
+  #     CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+  #     CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+  #     CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
 
-  connect-protobuf:
-    build:
-      context: ./docker/connect
-      dockerfile: Dockerfile
-    hostname: connect-protobuf
-    container_name: connect-protobuf
-    depends_on:
-      - broker
-      - schema-registry
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONNECT_REST_ADVERTISED_HOST_NAME: connect-protobuf
-      CONNECT_GROUP_ID: compose-connect-group-protobuf
-      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-protobuf-configs
-      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
-      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-protobuf-offsets
-      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-protobuf-status
-      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: io.confluent.connect.protobuf.ProtobufConverter
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.protobuf.ProtobufConverter
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      # CLASSPATH required due to CC-2422
-      CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
-      CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-      CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+  # connect-protobuf:
+  #   build:
+  #     context: ./docker/connect
+  #     dockerfile: Dockerfile
+  #   hostname: connect-protobuf
+  #   container_name: connect-protobuf
+  #   depends_on:
+  #     - broker
+  #     - schema-registry
+  #   environment:
+  #     CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
+  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect-protobuf
+  #     CONNECT_GROUP_ID: compose-connect-group-protobuf
+  #     CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-protobuf-configs
+  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+  #     CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-protobuf-offsets
+  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_STATUS_STORAGE_TOPIC: docker-connect-protobuf-status
+  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_KEY_CONVERTER: io.confluent.connect.protobuf.ProtobufConverter
+  #     CONNECT_VALUE_CONVERTER: io.confluent.connect.protobuf.ProtobufConverter
+  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     # CLASSPATH required due to CC-2422
+  #     CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
+  #     CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+  #     CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+  #     CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
 
   connect-json:
     build:
@@ -160,65 +160,96 @@ services:
       CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
-
-  connect-jsonschema:
+  
+  connect-json-no:
     build:
       context: ./docker/connect
       dockerfile: Dockerfile
-    hostname: connect-jsonschema
-    container_name: connect-jsonschema
+    hostname: connect-json-no
+    container_name: connect-json-no
     depends_on:
       - broker
       - schema-registry
     environment:
       CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONNECT_REST_ADVERTISED_HOST_NAME: connect-jsonschema
-      CONNECT_GROUP_ID: compose-connect-group-jsonschema
-      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-jsonschema-configs
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect-json-no
+      CONNECT_GROUP_ID: compose-connect-group-json-no
+      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-json-no-configs
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
       CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
-      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-jsonschema-offsets
+      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-json-no-offsets
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-jsonschema-status
+      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-json-no-status
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: io.confluent.connect.json.JsonSchemaConverter
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.json.JsonSchemaConverter
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
       # CLASSPATH required due to CC-2422
       CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
       CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
 
-  control-center:
-    image: confluentinc/cp-enterprise-control-center:7.9.0
-    hostname: control-center
-    container_name: control-center
-    depends_on:
-      - broker
-      - schema-registry
-      - connect-string
-      # - connect-avro
-      # - connect-protobuf
-      # - connect-json
-      # - connect-jsonschema
-    ports:
-      - "9021:9021"
-    environment:
-      CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:29092'
-      CONTROL_CENTER_CONNECT_CONNECT-STRING_CLUSTER: 'connect-string:8083'
-      CONTROL_CENTER_CONNECT_CONNECT-AVRO_CLUSTER: 'connect-avro:8083'
-      CONTROL_CENTER_CONNECT_CONNECT-PROTOBUF_CLUSTER: 'connect-protobuf:8083'
-      CONTROL_CENTER_CONNECT_CONNECT-JSON_CLUSTER: 'connect-json:8083'
-      CONTROL_CENTER_CONNECT_CONNECT-JSONSCHEMA_CLUSTER: 'connect-jsonschema:8083'
-      CONTROL_CENTER_CONNECT_HEALTHCHECK_ENDPOINT: '/connectors'
-      CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
-      CONTROL_CENTER_REPLICATION_FACTOR: 1
-      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
-      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
-      CONFLUENT_METRICS_TOPIC_REPLICATION: 1
-      PORT: 9021
+  # connect-jsonschema:
+  #   build:
+  #     context: ./docker/connect
+  #     dockerfile: Dockerfile
+  #   hostname: connect-jsonschema
+  #   container_name: connect-jsonschema
+  #   depends_on:
+  #     - broker
+  #     - schema-registry
+  #   environment:
+  #     CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
+  #     CONNECT_REST_ADVERTISED_HOST_NAME: connect-jsonschema
+  #     CONNECT_GROUP_ID: compose-connect-group-jsonschema
+  #     CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-jsonschema-configs
+  #     CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+  #     CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-jsonschema-offsets
+  #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_STATUS_STORAGE_TOPIC: docker-connect-jsonschema-status
+  #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+  #     CONNECT_KEY_CONVERTER: io.confluent.connect.json.JsonSchemaConverter
+  #     CONNECT_VALUE_CONVERTER: io.confluent.connect.json.JsonSchemaConverter
+  #     CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  #     # CLASSPATH required due to CC-2422
+  #     CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-7.9.0.jar
+  #     CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+  #     CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+  #     CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
+
+  # control-center:
+  #   image: confluentinc/cp-enterprise-control-center:7.9.0
+  #   hostname: control-center
+  #   container_name: control-center
+  #   depends_on:
+  #     - broker
+  #     - schema-registry
+  #     - connect-string
+  #     # - connect-avro
+  #     # - connect-protobuf
+  #     # - connect-json
+  #     # - connect-jsonschema
+  #   ports:
+  #     - "9021:9021"
+  #   environment:
+  #     CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:29092'
+  #     CONTROL_CENTER_CONNECT_CONNECT-STRING_CLUSTER: 'connect-string:8083'
+  #     CONTROL_CENTER_CONNECT_CONNECT-AVRO_CLUSTER: 'connect-avro:8083'
+  #     CONTROL_CENTER_CONNECT_CONNECT-PROTOBUF_CLUSTER: 'connect-protobuf:8083'
+  #     CONTROL_CENTER_CONNECT_CONNECT-JSON_CLUSTER: 'connect-json:8083'
+  #     CONTROL_CENTER_CONNECT_CONNECT-JSONSCHEMA_CLUSTER: 'connect-jsonschema:8083'
+  #     CONTROL_CENTER_CONNECT_HEALTHCHECK_ENDPOINT: '/connectors'
+  #     CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+  #     CONTROL_CENTER_REPLICATION_FACTOR: 1
+  #     CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
+  #     CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
+  #     CONFLUENT_METRICS_TOPIC_REPLICATION: 1
+  #     PORT: 9021
+
   kafka-ui:
     container_name: kafka-ui
     image: ghcr.io/kafbat/kafka-ui:latest
@@ -227,25 +258,28 @@ services:
     depends_on:
       - broker
       - schema-registry
-      - connect-string
-      - connect-avro
-      - connect-protobuf
+      # - connect-string
+      # - connect-avro
+      # - connect-protobuf
       - connect-json
-      - connect-jsonschema
+      - connect-json-no
+      # - connect-jsonschema
     environment:
       KAFKA_CLUSTERS_0_NAME: docker
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker:29092
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
-      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: string
-      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect-string:8083
-      KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: avro
-      KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: http://connect-avro:8083
-      KAFKA_CLUSTERS_0_KAFKACONNECT_2_NAME: protobuf
-      KAFKA_CLUSTERS_0_KAFKACONNECT_2_ADDRESS: http://connect-protobuf:8083
-      KAFKA_CLUSTERS_0_KAFKACONNECT_3_NAME: json
-      KAFKA_CLUSTERS_0_KAFKACONNECT_3_ADDRESS: http://connect-json:8083
-      KAFKA_CLUSTERS_0_KAFKACONNECT_4_NAME: jsonschema
-      KAFKA_CLUSTERS_0_KAFKACONNECT_4_ADDRESS: http://connect-jsonschema:8083
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: string
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect-string:8083
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: avro
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: http://connect-avro:8083
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_2_NAME: protobuf
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_2_ADDRESS: http://connect-protobuf:8083
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: json
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect-json:8083
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_4_NAME: jsonschema
+      # KAFKA_CLUSTERS_0_KAFKACONNECT_4_ADDRESS: http://connect-jsonschema:8083
+      KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: json-no-embedded
+      KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: http://connect-json-no:8083
       #DYNAMIC_CONFIG_ENABLED: 'true'
   mysql:
     container_name: mysql
